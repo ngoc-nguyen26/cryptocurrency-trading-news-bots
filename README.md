@@ -9,6 +9,8 @@ This bot is designed to collect and organizes news related to social trading pla
 
 ## Getting Started
 
+This repo is developed on Python version >= 3.12.5
+
 - **Clone this repo**:  https://github.com/ngoc-nguyen26/cryptocurrency-trading-news
 - Add file config
     - Setup bot telegram and then create new file apprise.yaml and add url telegram ```tgram://{bot_token}/{chat_id}}?format=html&mdv=v2```, more detail you can check [here](https://github.com/caronc/apprise/wiki/Notify_telegram).
