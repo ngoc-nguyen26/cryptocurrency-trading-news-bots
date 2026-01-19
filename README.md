@@ -26,7 +26,6 @@ Users should always conduct their own independent research and due diligence bef
 
 ## Contributing
 
-
 ## License (If Applicable)
 
 *(This section would specify the license under which the bot is distributed.)*
