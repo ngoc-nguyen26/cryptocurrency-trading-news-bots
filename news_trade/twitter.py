@@ -40,7 +40,7 @@ class Twitter:
                 title= f"Twitter - {user_name} - Time: {datetime.fromtimestamp(tweet_timestamp, tz=pytz.timezone('America/Chicago'))}",
                 body= f"{tweet.full_text}\n\n[Link: {url}]({url})"
             ))
-        for user_id in update_max_timestamp:
+        for user_id in update_max_tigmestamp:
             self.map_timestamp_by_user[user_id] = update_max_timestamp[user_id]
         return twitter_tweets
         
@@ -48,7 +48,7 @@ class Twitter:
     def get_tweets(self, query: str) -> list[Message]:
         loop = asyncio.get_event_loop()
         try:
-            tweets = loop.run_until_complete(self.client.search_tweet(query, product='Latest'))
+            tweets = loop.run_until_complete(self.client.search_tweet(query, product='Latest', count=self.config.TWITTER_TWEETS_COUNT))
         except Exception as err:
             self.logger.error(Message(
                 title=f"Error Twitter.get_tweets - {query}",
