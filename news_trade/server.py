@@ -14,7 +14,7 @@ import apprise
 def main():
     config = Config()
     logger = Logger(config, "news_trade_server")
-    logger.info(Message(title = f"Start News Trade - Time: {datetime.fromtimestamp(int(time.time()), tz=pytz.timezone('America/Chicago'))}", body=f"{json.dumps(config.beautify(), indent=2)}", format=apprise.NotifyFormat.TEXT), False)
+    logger.info(Message(title = f"Start News Trade - Time: {datetime.fromtimestamp(int(time.time()), tz=pytz.timezone('America/Chicago'))}", body=f"{json.dumps(config.beautify(), indent=2)}", format=apprise.NotifyFormat.TEXT), True)
 
     twitter = Twitter(config, logger)
     threads = Threads(config, logger)
