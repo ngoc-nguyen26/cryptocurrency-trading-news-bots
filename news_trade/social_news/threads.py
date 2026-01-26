@@ -6,9 +6,9 @@ import jmespath
 from parsel import Selector
 from playwright.sync_api import sync_playwright
 from nested_lookup import nested_lookup
-from .logger import Logger
-from .config import Config
-from .notification import Message
+from ..logger import Logger
+from ..config import Config
+from ..notification import Message
 from datetime import datetime
 import pytz
 import subprocess
@@ -48,7 +48,7 @@ class Threads:
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
         if process.returncode != 0:
-            self.logger.error(Message(title=f"Error installing Playwright - Time: {datetime.fromtimestamp(int(time.time()), tz=pytz.timezone('America/Chicago'))}', body=f'{stderr.decode('utf-8')}"), True)
+            self.logger.error(Message(title=f"Error installing Playwright - Time: {datetime.fromtimestamp(int(time.time()), tz=pytz.timezone('America/Chicago'))}", body=f'{stderr.decode('utf-8')}'), True)
         else:
             msg = stdout.decode('utf-8') or 'Successful'
             msg = msg.replace('\u25a0', '')

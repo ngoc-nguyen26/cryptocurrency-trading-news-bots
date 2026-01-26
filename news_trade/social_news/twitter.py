@@ -1,9 +1,9 @@
 from twikit import Client, TooManyRequests, Tweet
 from twikit.utils import Result
-from .logger import Logger
-from .config import Config
+from ..logger import Logger
+from ..config import Config
 import asyncio
-from .notification import Message
+from ..notification import Message
 import time
 import pytz
 from datetime import datetime
@@ -40,7 +40,7 @@ class Twitter:
                 title= f"Twitter - {user_name} - Time: {datetime.fromtimestamp(tweet_timestamp, tz=pytz.timezone('America/Chicago'))}",
                 body= f"{tweet.full_text}\n\n[Link: {url}]({url})"
             ))
-        for user_id in update_max_tigmestamp:
+        for user_id in update_max_timestamp:
             self.map_timestamp_by_user[user_id] = update_max_timestamp[user_id]
         return twitter_tweets
         
@@ -57,7 +57,6 @@ class Twitter:
             ), True)
             tweets = []
             # loop.close()
-            
         return self.filter_tweets(tweets)
     
     def scrape_user_tweets(self):
