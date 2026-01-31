@@ -65,5 +65,8 @@ class BinanceAPI:
     def f_price(self, symbol: str) -> float:
         return float(self.binance_client.futures_mark_price(symbol=symbol)["markPrice"])
     
-    def f_cancel_all_open_orders(self, symbol: str):
+    def f_cancel_all_open_orders(self, symbol: str):    
         return self.binance_client.futures_cancel_all_open_orders(symbol=symbol)
+    
+    def f_get_historical_klines(self, symbol: str):
+        return self.binance_client.futures_historical_klines(symbol, )
