@@ -48,7 +48,7 @@ class Threads:
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = process.communicate()
         if process.returncode != 0:
-            self.logger.error(Message(title=f"Error installing Playwright - Time: {datetime.fromtimestamp(int(time.time()), tz=pytz.timezone('America/Chicago'))}", body=f'{stderr.decode('utf-8')}'), True)
+            self.logger.error(Message(title=f"Error installing Playwright - Time: {datetime.fromtimestamp(int(time.time()), tz=pytz.timezone('America/Chicago'))}", body=f'{stderr.decode("utf-8")}'), True)
         else:
             msg = stdout.decode('utf-8') or 'Successful'
             msg = msg.replace('\u25a0', '')
@@ -74,7 +74,7 @@ class Threads:
             has_audio: post.has_audio,
             reply_count: view_replies_cta_string,
             like_count: post.like_count,
-            images: post.carousel_media[].image_versions2.candidates[1].url,
+            images: post.image_versions2.candidates[0].url,
             image_count: post.carousel_media_count,
             videos: post.video_versions[].url
         }""",
@@ -161,7 +161,8 @@ class Threads:
             max_timestamp = max(max_timestamp, thread['published_on'])
             threads_post.append(Message(
                 body = f"{thread['text']}\n\n[Link: {thread['url']}]({thread['url']})",
-                title = f"Threads - {username} - Time: {datetime.fromtimestamp(thread['published_on'], tz=pytz.timezone('America/Chicago'))}"
+                title = f"Threads - {username} - Time: {datetime.fromtimestamp(thread['published_on'], tz=pytz.timezone('America/Chicago'))}",
+                image=thread['images']
             ))
         if max_timestamp > 0:
             self.map_last_timestamp[username] = max_timestamp
